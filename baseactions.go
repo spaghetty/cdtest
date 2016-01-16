@@ -68,5 +68,5 @@ type GreatingAction struct {
 
 //Run is stupid as above
 func (a GreatingAction) Run() string {
-	return strings.Join([]string{"HI", a.Param}, ", ")
+	return strings.Join([]string{"Hi", a.Param}, ", .")
 }
