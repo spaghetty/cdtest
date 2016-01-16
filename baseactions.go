@@ -1,6 +1,7 @@
 package cdtest
 
 import (
+	"errors"
 	"strconv"
 	"strings"
 )
@@ -26,6 +27,12 @@ func NewAction(action string, params ...string) (Action, error) {
 			tmp = append(tmp, val)
 		}
 		res = &CalcAction{Params: tmp}
+	case "GREATING":
+		if len(params) > 1 {
+			return nil, errors.New("too many names")
+		}
+		res = &GreatingAction{Param: params[0]}
+
 	}
 	return res, nil
 }
@@ -52,4 +59,14 @@ func (a CalcAction) Run() string {
 		i += x
 	}
 	return strconv.Itoa(i)
+}
+
+//GreatingAction this is fun
+type GreatingAction struct {
+	Param string
+}
+
+//Run is stupid as above
+func (a GreatingAction) Run() string {
+	return strings.Join([]string{"Hi", a.Param}, ", ")
 }

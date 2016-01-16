@@ -48,3 +48,22 @@ func TestCalcAction(t *testing.T) {
 		t.Error("missing error report")
 	}
 }
+
+func TestGreatingAction(t *testing.T) {
+	a, _ := NewAction("greating", "Domenico")
+	if a == nil {
+		t.Fatal("you miss to allocate new action")
+	}
+	x := a.Run()
+	if x != "Hi, Domenico" {
+		t.Error("Not working action:", x)
+	}
+	var err error
+	a, err = NewAction("greating", "Domenico", "Luciano")
+	if a != nil {
+		t.Error("missing expected error here")
+	}
+	if err == nil {
+		t.Error("missing error report")
+	}
+}
